@@ -13,11 +13,11 @@ post / pokemons: recibe los datos recolectados del form por body + crea un pokem
 async function addPokemon(req, res) {
     const id = uuidv4();
     let data = { ...req.body, id };  // No es necesario destructurar porque ya viene un objeto
-    if (!req.body.name) return res.status(500).send('Body vacio!!!');
+    if (!req.body.name) return res.status(400).send('Body vacio!!!');
     // return res.send(req.body)
     try {
         const createdPoke = await Pokemons.create(data)
-        await createdPoke.addTypes(req.body.type1, { through: 'pokemon_type' })
+        await createdPoke.addTypes(req.body.type, { through: 'pokemon_type' })
         await createdPoke.addTypes(req.body.type2, { through: 'pokemon_type' })
         const poke_type = await Pokemons.findOne({
             where: { name: req.body.name },
@@ -100,7 +100,7 @@ async function getAllPokemons(req, res) {
 };
 
 async function findById(req, res) {
-    let pokeId = parseInt(req.params.idPokemon);
+    let pokeId = req.params.idPokemon;
     if (pokeId.length < 5) {
         try {
             const findByPokeId = await axios(`${BASE_URL}${POKE}${pokeId}`)
