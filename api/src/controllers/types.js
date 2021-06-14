@@ -6,28 +6,27 @@ Get /types: obtener todos los tipos de pokemon posibles + en principio traerlos 
 */
 
 async function getAllTipos(req, res) {
-    let tiposDB = await Types.findAll({limit: 20});
+    let tiposDB = await Types.findAll({ limit: 20 });
     // console.log(tiposDB)
     if (tiposDB.length < 20) {
         try {
-            let { data } = await axios(`${BASE_URL}${TYPE}`)
+            let { data } = await axios(`${BASE_URL}${TYPE}`);
             for (let i = 0; i < 20; i++) {
                 const typeResults = data.results[i].name;
-                //console.log(typeResults)
-                await Types.create({
-                    name: typeResults,
-                })
+                await Types.findOrCreate({
+                    where: {
+                        name: typeResults,
+                    }
+                });
             }
-            return res.redirect('/types')
+            return res.redirect('/types');
         }
         catch (error) {
             console.log(error);
-            res.status(500).send('Internal Server Error')
+            res.status(500).send('Internal Server Error');
         }
     }
-    res.status(200).json(tiposDB)
+    res.status(200).json(tiposDB);
 };
 
-module.exports = {
-    getAllTipos
-}
+module.exports = { getAllTipos };

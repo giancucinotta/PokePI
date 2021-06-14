@@ -1,0 +1,8 @@
+.landing_container{
+    background-image:
+ url('https://cdn.statically.io/img/lh4.googleusercontent.com/proxy/nEgq6hvHbXtxt6HXMotquk2U6BUJ28qyaE70H5cH6C6iyS_74XdsPpEhrLhXVmGfLEkxWIPF1Tcx86XtsFNd1eabM0K4emmT4_A65OcO0dV1htcPVo8WYw=s0-d');
+  background-size: cover; 
+  overflow:hidden;
+  width: 100vw;
+  height: 100vh; 
+} 
