@@ -27,7 +27,6 @@ router.post('/', async function (req, res) {
 router.get('/', async function (req, res) {
     if (req.query.name) {
         let findByName = await getPokemonsByQuery(req.query.name);
-        console.log("COMPROBAMIENTO: ----> ", findByName)
         if(findByName === undefined) return res.status(404).send('Pokemon not found, try again with another name');
         if(findByName.name) return res.status(200).send(findByName);
     }
