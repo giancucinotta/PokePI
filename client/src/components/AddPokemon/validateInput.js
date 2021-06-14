@@ -3,11 +3,11 @@ export function validate(input) {
   if (!input.name) {
     errors.name = 'Username is required';
   } else if (!/([A-Z])\w+/.test(input.name)) {
-    errors.name = 'Username is invalid';
+    errors.name = 'Username is invalid, try typing only letters';
   }
   if (!input.hp) {
     errors.hp = 'HP is required';
-  } else if (!/^([1-9]|[1-9][0-9]|2[0-5][0-5]])$/.test(input.hp)) {
+  } else if (!/^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-5][0-5]])$/.test(input.hp)) {
     errors.hp = 'HP is invalid';
   }
   if (!input.attack) {
