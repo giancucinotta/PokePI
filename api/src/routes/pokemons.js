@@ -27,8 +27,9 @@ router.post('/', async function (req, res) {
 router.get('/', async function (req, res) {
     if (req.query.name) {
         let findByName = await getPokemonsByQuery(req.query.name);
-        if (findByName.name) return res.status(200).send(findByName);
-        else return res.status(404).send('Pokemon not found, try again with another name');
+        console.log("COMPROBAMIENTO: ----> ", findByName)
+        if(findByName === undefined) return res.status(404).send('Pokemon not found, try again with another name');
+        if(findByName.name) return res.status(200).send(findByName);
     }
     else {
         let pokeArray = await getAllApiPokemons();
@@ -39,8 +40,8 @@ router.get('/', async function (req, res) {
 router.get('/:idPokemon', async function (req, res) {
     if (req.params.idPokemon) {
         let findByID = await getPokemonsById(req.params.idPokemon);
+        if(findByID === undefined) return res.status(404).send('Pokemon not found, try again with another ID')
         if (findByID.name) res.status(200).json(findByID);
-        else return res.status(404).send('Pokemon not found, try again with another ID')
     }
 });
 

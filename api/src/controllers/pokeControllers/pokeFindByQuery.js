@@ -11,8 +11,7 @@ const getPokemonsByQuery = async function (name) {
             }
         };
         let pokeAllAPI = await axios(`${BASE_URL}${POKE}${name}`)
-        if(pokeAllAPI.data === 'Not Found') return {};
-        else if (pokeAllAPI.data.name) {
+        if (pokeAllAPI.data.name) {
             let pokeFound = {
                 name: pokeAllAPI.data.name,
                 hp: pokeAllAPI.data.stats[0].base_stat,

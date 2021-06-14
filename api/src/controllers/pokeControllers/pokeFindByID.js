@@ -12,9 +12,7 @@ const getPokemonsById = async function (idPokemon) {
         };
         let idPoke = parseInt(idPokemon);
         let pokeAllAPI = await axios(`${BASE_URL}${POKE}${idPoke}`)
-        console.log(pokeAllAPI)
-        if(pokeAllAPI.data === 'Not Found') return {};
-        else if (pokeAllAPI.data.name) {
+        if (pokeAllAPI.data.name) {
             let pokeFound = {
                 id: idPoke,
                 name: pokeAllAPI.data.name,
