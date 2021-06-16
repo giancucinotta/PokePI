@@ -7,6 +7,9 @@ const getPokemonsByQuery = async function (name) {
         let pokeAll = await getAllDBPokemons();
         for (let i = 0; i < pokeAll.length; i++) {
             if (pokeAll[i].dataValues.name === name) {
+                pokeAll[i].dataValues.types.length === 1 ?
+                    pokeAll[i].dataValues.type = pokeAll[i].dataValues.types[0].name
+                    : pokeAll[i].dataValues.type = pokeAll[i].dataValues.types[0].name + ", " + pokeAll[i].dataValues.types[1].name
                 return pokeAll[i].dataValues;
             }
         };
@@ -14,14 +17,15 @@ const getPokemonsByQuery = async function (name) {
         if(pokeAllAPI.data === 'Not Found') return {};
         else if (pokeAllAPI.data.name) {
             let pokeFound = {
+                id: pokeAllAPI.data.id,
                 name: pokeAllAPI.data.name,
-                hp: pokeAllAPI.data.stats[0].base_stat,
-                attack: pokeAllAPI.data.stats[1].base_stat,
-                defense: pokeAllAPI.data.stats[2].base_stat,
-                speed: pokeAllAPI.data.stats[5].base_stat,
-                height: pokeAllAPI.data.height,
-                weight: pokeAllAPI.data.weight
+                img: pokeAllAPI.data.sprites.other.dream_world.front_default ?
+                pokeAllAPI.data.sprites.other.dream_world.front_default : 
+                pokeAllAPI.data.sprites.other['official-artwork'].front_default,
             }
+            pokeAllAPI.data.types.length === 1 ?
+            pokeFound.type = pokeAllAPI.data.types[0].type.name 
+            : pokeFound.type = pokeAllAPI.data.types[0].type.name + ", " + pokeAllAPI.data.types[1].type.name
             return pokeFound
         };
     } catch (error) {
