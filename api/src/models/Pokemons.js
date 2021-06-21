@@ -31,15 +31,9 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.INTEGER
     },
-    // img: {
-    //   type: DataTypes.STRING
-    // },
-    // slot_one: {
-    //   type: DataTypes.INTEGER
-    // },
-    // slot_two: {
-    //   type: DataTypes.INTEGER
-    // }
+    img: {
+      type: DataTypes.STRING
+    }
   });
 
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { getTypes } from '../../actions/types'
 import { connect } from 'react-redux';
 

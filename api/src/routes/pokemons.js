@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { Pokemons, Types } = require('../db');
 const { v4: uuidv4 } = require('uuid');
-const { getPokemonsByQuery, getPokemonsById, getAllApiPokemons } = require('../controllers/pokeControllers/indexPoke');
+const { getPokemonsByQuery, getPokemonsById, getAllPokemons } = require('../controllers/pokeControllers/indexPoke');
 
 const router = Router()
 
@@ -31,7 +31,7 @@ router.get('/', async function (req, res) {
         else return res.status(404).send('Pokemon not found, try again with another name');
     }
     else {
-        let pokeArray = await getAllApiPokemons();
+        let pokeArray = await getAllPokemons();
         return res.status(200).send(pokeArray);
     }
 });

@@ -2,6 +2,8 @@ export const ADD_POKEMON = 'ADD_POKEMON';
 export const GET_POKEMON = 'GET_POKEMON';
 export const GET_POKEMON_BY_ID = 'GET_POKEMON_BY_ID';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
+export const POKEMON_BY_NAME_RESET = 'POKEMON_BY_NAME_RESET';
+export const POKEMON_DETAIL_RESET = 'POKEMON_DETAIL_RESET';
 
 export const addPokemon = (obj) => {
     return (dispatch) =>
@@ -44,7 +46,7 @@ export const getPokemonDetail = (id) => {
                 }))
 };
 
-export const getPokemonByName = (name) =>  {
+export const getPokemonByName = (name) => {
     return (dispatch) =>
         fetch(`http://localhost:3001/pokemons?name=${name}`)
             .then((answer) => answer.json())
@@ -53,4 +55,22 @@ export const getPokemonByName = (name) =>  {
                     type: GET_POKEMON_BY_NAME,
                     payload: answer
                 }))
+};
+
+export const getPokemonByNameReset = () => {
+    return (dispatch) => {
+        dispatch({
+            type: POKEMON_BY_NAME_RESET,
+            payload: []
+        })
+    }
+};
+
+export const getPokemonDetailReset = () => {
+    return (dispatch) => {
+        dispatch({
+            type: POKEMON_DETAIL_RESET,
+            payload: []
+        })
+    }
 };

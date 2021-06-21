@@ -10,7 +10,6 @@ const getAllPokemons = async function () {
     } catch (error) {
         console.log(error);
         res.status(500).send('Pokemon not found in "Created Data Base" and API');
-
     }
 }
 

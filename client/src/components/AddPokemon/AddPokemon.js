@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addPokemon } from '../../actions/pokemon'
+import Nav from '../Nav/Nav';
 import { validate } from './validateInput';
 
-/*Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
-Número de Pokemon (id)
-Estadísticas (vida, fuerza, defensa, velocidad)
-Altura y peso*/
-export function AddPokemon({ addPokemon }) {
+import './AddPokemon.css'
+
+export function AddPokemon({ types, addPokemon }) {
     const [input, setInput] = useState({
         name: '',
-        img: null,
         type1: null,
         type2: null,
         hp: null,
@@ -18,8 +16,10 @@ export function AddPokemon({ addPokemon }) {
         defense: null,
         speed: null,
         weight: null,
-        height: null
+        height: null,
+        img: "https://play-lh.googleusercontent.com/GU2izEZOquAFv6oKKibJyq6yUYHaGSoiia6_A-K3RQ3Li56tMDTWoPdFxEotmjKVsuo"
     });
+     
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
@@ -31,95 +31,91 @@ export function AddPokemon({ addPokemon }) {
             ...input,
             [e.target.name]: e.target.value
         }));
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addPokemon(input);
-    }
-    
+        if (Object.keys(errors).length === 0) {
+            addPokemon(input);
+            setInput({});
+            alert("Pokemon created!");
+        }
+        else alert("Check required fields");
+    };
+
     return (
         <div>
+            <Nav/>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name</label>
-                    <input name="name" type={'text'} placeholder="Type a name here!" value={input.name} onChange={handleChange} />
+                    <input className={errors.name && 'danger'} name="name" type={'text'} placeholder="Type a name here!" value={input.name} onChange={handleChange} />
+                    {errors.name && (
+                        <p className='danger'>{errors.name}</p>
+                    )}
                 </div>
                 <div>
                     <label>First type</label>
                     <select name="type1" value={input.type1} onChange={handleChange}>
-                        <option value="null">None</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Fighting</option>
-                        <option value="3">Flying</option>
-                        <option value="4">Poison</option>
-                        <option value="5">Ground</option>
-                        <option value="6">Rock</option>
-                        <option value="7">Bug</option>
-                        <option value="8">Ghost</option>
-                        <option value="9">Steel</option>
-                        <option value="10">Fire</option>
-                        <option value="11">Water</option>
-                        <option value="12">Grass</option>
-                        <option value="13">Electric</option>
-                        <option value="14">Psychic</option>
-                        <option value="15">Ice</option>
-                        <option value="16">Dragon</option>
-                        <option value="17">Dark</option>
-                        <option value="18">Fairy</option>
-                        <option value="19">Unknown</option>
-                        <option value="20">Shadow</option>
+                        {types.map((types) =>
+                            <option value={types.id} key={types.name}>{types.name}</option>
+                        )}
                     </select>
                 </div>
                 <div>
-                    <label>Second type</label>
+                    <label>Second type (optional)</label>
                     <select name="type2" value={input.type2} onChange={handleChange}>
                         <option value="null">None</option>
-                        <option value="1">Normal</option>
-                        <option value="2">Fighting</option>
-                        <option value="3">Flying</option>
-                        <option value="4">Poison</option>
-                        <option value="5">Ground</option>
-                        <option value="6">Rock</option>
-                        <option value="7">Bug</option>
-                        <option value="8">Ghost</option>
-                        <option value="9">Steel</option>
-                        <option value="10">Fire</option>
-                        <option value="11">Water</option>
-                        <option value="12">Grass</option>
-                        <option value="13">Electric</option>
-                        <option value="14">Psychic</option>
-                        <option value="15">Ice</option>
-                        <option value="16">Dragon</option>
-                        <option value="17">Dark</option>
-                        <option value="18">Fairy</option>
-                        <option value="19">Unknown</option>
-                        <option value="20">Shadow</option>
+                        {types.map((types) =>
+                            <option value={types.id} key={types.name}>{types.name}</option>
+                        )}
                     </select>
                 </div>
                 <div>
                     <label>HP</label>
-                    <input name="hp" type={'text'} placeholder="Type a number between 1-255!" value={input.hp} onChange={handleChange} />
+                    <input className={errors.hp && 'danger'} name="hp" type={'text'} placeholder="Type a number between 1-255!" value={input.hp} onChange={handleChange} />
+                    {errors.hp && (
+                        <p className='danger'>{errors.hp}</p>
+                    )}
                 </div>
                 <div>
                     <label>Attack</label>
-                    <input name="attack" type={'text'} placeholder="Type a number between 5-190!" value={input.attack} onChange={handleChange} />
+                    <input className={errors.attack && 'danger'} name="attack" type={'text'} placeholder="Type a number between 5-190!" value={input.attack} onChange={handleChange} />
+                    {errors.attack && (
+                        <p className='danger'>{errors.attack}</p>
+                    )}
                 </div>
                 <div>
                     <label>Defense</label>
-                    <input name="defense" type={'text'} placeholder="Type a number between 5-230!" value={input.defense} onChange={handleChange} />
+                    <input className={errors.defense && 'danger'} name="defense" type={'text'} placeholder="Type a number between 5-230!" value={input.defense} onChange={handleChange} />
+                    {errors.defense && (
+                        <p className='danger'>{errors.defense}</p>
+                    )}
                 </div>
                 <div>
                     <label>Speed</label>
-                    <input name="speed" type={'text'} placeholder="Type a number between 5-116!" value={input.speed} onChange={handleChange} />
+                    <input className={errors.speed && 'danger'} name="speed" type={'text'} placeholder="Type a number between 5-116!" value={input.speed} onChange={handleChange} />
+                    {errors.speed && (
+                        <p className='danger'>{errors.speed}</p>
+                    )}
                 </div>
                 <div>
                     <label>Weight</label>
-                    <input name="weight" type={'text'} placeholder="Type a number between 100-999900 gram!" value={input.weight} onChange={handleChange} />
+                    <input className={errors.weight && 'danger'} name="weight" type={'text'} placeholder="Type a number between 1-9999 kg!" value={input.weight} onChange={handleChange} />
+                    {errors.weight && (
+                        <p className='danger'>{errors.weight}</p>
+                    )}
                 </div>
                 <div>
                     <label>Height</label>
-                    <input name="height" type={'text'} placeholder="Type a number between 10-2000 cm!" value={input.height} onChange={handleChange} />
+                    <input className={errors.height && 'danger'} name="height" type={'text'} placeholder="Type a number between 1-200 dm!" value={input.height} onChange={handleChange} />
+                    {errors.height && (
+                        <p className='danger'>{errors.height}</p>
+                    )}
+                </div>
+                <div>
+                    <label>Enter an image URL here! (optional)</label>
+                    <input type="url" name="img" placeholder="http://example.com" value={input.img} onChange={handleChange}/>
                 </div>
                 <button type='submit'>CREATE POKEMON</button>
             </form>
@@ -129,13 +125,14 @@ export function AddPokemon({ addPokemon }) {
 
 function mapDispatchToProps(dispatch) {
     return {
-      addPokemon: (pokemon) => dispatch(addPokemon(pokemon))
+        addPokemon: (pokemon) => dispatch(addPokemon(pokemon))
     };
-  }
+}
 
 function mapStateToProps(state) {
     return {
-        pokemon_created: state.pokemon_created
+        pokemon_created: state.pokemon_created,
+        types: state.types
     };
 };
 

@@ -1,8 +1,38 @@
 .landing_container{
     background-image:
- url('https://cdn.statically.io/img/lh4.googleusercontent.com/proxy/nEgq6hvHbXtxt6HXMotquk2U6BUJ28qyaE70H5cH6C6iyS_74XdsPpEhrLhXVmGfLEkxWIPF1Tcx86XtsFNd1eabM0K4emmT4_A65OcO0dV1htcPVo8WYw=s0-d');
+ url('./Landing.gif');
   background-size: cover; 
   overflow:hidden;
   width: 100vw;
   height: 100vh; 
 } 
+
+.landing-logo-img{
+  display: flex;
+  height: 100px;
+  margin-left: 50px;
+}
+
+.enter-text{
+  display: flex;
+  align-items: flex-end;
+  margin-left: 120px;
+  color: #adfeff;
+}
+
+.created-text{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: #adfeff;
+  margin-top: 0px;
+  margin-left: 30%;
+
+}
+
+.button_home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 200px;
+}

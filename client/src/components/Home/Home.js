@@ -1,27 +1,36 @@
-import React, { useEffect } from 'react'
-import { connect } from "react-redux";
-import { getPokemon } from "../../actions/pokemon";
-
+import React, { useState } from 'react'
+import { useSelector } from "react-redux";
+import Cards from '../Card/Cards';
+import Pagination from '../Pagination/Pagination';
+import Nav from '../Nav/Nav';
+import SearchBar from '../SearchBar/SearchBar';
 import './Home.css'
 
-const Home = ({ getPokemon }) => {
-    useEffect(() => {
-        getPokemon()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+const Home = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const pokemonPerPage = 12;
+    
+    const pokemons = useSelector((state) => state.pokemons);
 
-    return null
+    const indexOfLastPokemon = currentPage * pokemonPerPage;
+    const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage
+    const currentPokemon = pokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    return (
+        <div>
+            <Nav/>
+            <SearchBar/>
+            <Cards
+                pokemons={currentPokemon}
+            />
+            <Pagination
+                pokemonPerPage={pokemonPerPage}
+                totalPokemon={pokemons.length}
+                paginate={paginate}
+            />
+        </div>
+    )
 };
 
-function mapStateToProps(state) {
-    return {
-        pokemons: state.pokemons,
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        getPokemon: () => dispatch(getPokemon())
-    };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home;
