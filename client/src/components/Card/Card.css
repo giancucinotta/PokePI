@@ -1,0 +1,18 @@
+.cards-img{
+    max-width: 150px;  
+    height: auto;  
+
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-content: space-between;
+}
+
+.card{
+    margin-left: 100px;
+    margin-right: 100px;
+}

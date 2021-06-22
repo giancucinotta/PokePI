@@ -1,0 +1,33 @@
+.home-container {
+    background-color: #7f3e85;
+
+}
+
+nav ol {
+    list-style-type: none;
+}
+
+nav ol li {
+    float: left;
+    margin-right: 0.5em;
+}
+
+nav ol li a {
+    padding: 0.25em 1em;
+    text-decoration: none; /* no underline */
+    background-color: #EBF5FF; /* pale bluish white */
+    color: #4312AE; /* dark blue */
+    border: 2px solid black;
+    border-top-left-radius: 1em 1em; /* rounded corner! */
+    border-top-right-radius: 1em 1em; /* another rounded corner! */
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:center;
+}
+
+

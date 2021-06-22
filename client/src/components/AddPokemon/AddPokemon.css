@@ -1,0 +1,50 @@
+.danger{
+    color: red
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    border: black;
+    border-style: solid;
+    flex-wrap: wrap;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 30px;
+    border-radius: 20px;
+    background-image: url('./form-bg.gif');
+    background-size: cover;
+    overflow: hidden;
+}
+
+.form-container-container{
+    display: flex;
+    flex-direction: column;
+    border: black;
+    border-style: solid;
+    flex-wrap: wrap;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: cornsilk;
+    
+}
+
+.form-items{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-items1{
+    margin-left: 15px;
+    margin-right: 15px;
+    justify-content: center;
+}
+
+.form-items2{
+    margin-right: 15px;
+    justify-content: center;
+}
+
+.input-item{
+    width: 400px;
+}
