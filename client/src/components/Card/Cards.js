@@ -1,31 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Card from './Card';
 
-import './Card.css';
+import './Cards.css';
 
 const Cards = ({ pokemons }) => {
   return (
     <div className='cards'>
       {
-        pokemons.map(p => (
-          <div key={p.id} className='cards-group'>
-            <div>
-              <img src={p.img} alt='' className='cards-img'/>
-              <div>
-                <h5>{p.name}</h5>
-              </div>
-              <div>
-                <p>{p.types}</p>
-              </div>
-              <Link to={`/home/detail/${p.id}`}>
-                <button type='submit'>
-                  More Details
-                </button>
-              </Link>
-            </div>
-          </div>
-        ))
-      }
+        pokemons.map((pokemon, i) => (
+          <Card pokemon={pokemon} index={i}/>
+        )
+        )}
     </div>
   );
 };

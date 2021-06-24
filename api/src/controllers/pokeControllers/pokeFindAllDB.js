@@ -21,9 +21,9 @@ const getAllDBPokemons = async function () {
                 weight: pokeDB[i].dataValues.weight
             }
             pokeDB[i].dataValues.types.length === 1 ?
-                pokeObj.types = [pokeDB[i].dataValues.types[0].name]
+                pokeObj.typ = [pokeDB[i].dataValues.types[0].name]
                 // pokeObj.type = pokeDB[i].dataValues.types[0].name
-                : pokeObj.types = [pokeDB[i].dataValues.types[0].name, pokeDB[i].dataValues.types[1].name]
+                : pokeObj.typ = [pokeDB[i].dataValues.types[0].name, pokeDB[i].dataValues.types[1].name]
             //pokeObj.type = pokeDB[i].dataValues.types[0].name + ", " + pokeDB[i].dataValues.types[1].name
             pokeResultDB.push(pokeObj)
         }

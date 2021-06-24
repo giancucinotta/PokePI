@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { getPokemonDetail, getPokemonDetailReset } from "../../actions/pokemon";
 import Nav from '../Nav/Nav';
 import CardDetail from '../Card/CardDetail';
-import './PokemonDetail.css'
 
 const PokemonDetail = ({ match, pokemon_detail, getPokemonDetailReset, getPokemonDetail }) => {
 

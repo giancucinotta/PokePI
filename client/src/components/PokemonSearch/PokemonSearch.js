@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { getPokemonByName, getPokemonByNameReset } from "../../actions/pokemon";
 import Card from '../Card/Card';
 import Nav from '../Nav/Nav';
-import SearchBar from '../SearchBar/SearchBar';
+import { Link } from 'react-router-dom';
+import notFound from './notFound.gif';
 
 import './PokemonSearch.css'
 
@@ -14,11 +15,23 @@ const PokemonByName = ({ match, pokemon, getPokemonByName, getPokemonByNameReset
     return () => { getPokemonByNameReset() }
   }, [])
 
+
   return (
-    <div className="Pokemon-search">
-      <Nav/>
-      <SearchBar/>
-      <Card img={ pokemon.img } name={ pokemon.name } id={ pokemon.id } type={ pokemon.type }/>
+    <div className="pokemon-search">
+      <Nav />
+      <div className="search-card">
+        {pokemon.name ?
+          <Card pokemon={pokemon} />
+          : <div>
+            <p>Pokemon not found!!</p>
+            <img className='notfound' src={notFound} />
+          </div>}
+        <Link to={`/home`}>
+          <button type='submit' className='btn-grad-search'>
+            Go Back
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }

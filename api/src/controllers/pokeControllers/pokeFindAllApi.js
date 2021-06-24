@@ -20,7 +20,7 @@ const getAllApiPokemons = async function () {
                 speed: pokeI.data.stats[5].base_stat,
                 height: pokeI.data.height,
                 weight: pokeI.data.weight,
-                types: [pokeI.data.types[0].type.name]
+                typ: [pokeI.data.types[0].type.name]
                 //types: pokeI.data.types[0].type.name
             }) :
                 (eachPoke = {
@@ -33,7 +33,7 @@ const getAllApiPokemons = async function () {
                     speed: pokeI.data.stats[5].base_stat,
                     height: pokeI.data.height,
                     weight: pokeI.data.weight,
-                    types: [pokeI.data.types[0].type.name, pokeI.data.types[1].type.name]
+                    typ: [pokeI.data.types[0].type.name, pokeI.data.types[1].type.name]
                     // types: pokeI.data.types[0].type.name + ", " + pokeI.data.types[1].type.name
                 })
             pokeArray.push(eachPoke);

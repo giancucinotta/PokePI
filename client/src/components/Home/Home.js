@@ -4,7 +4,7 @@ import Cards from '../Card/Cards';
 import Pagination from '../Pagination/Pagination';
 import Nav from '../Nav/Nav';
 import SearchBar from '../SearchBar/SearchBar';
-import './Home.css'
+import PokemonHome from './PokemonHome';
 
 const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,11 +33,14 @@ const Home = () => {
     
     return (
         <div className='home-container'>
-            <Nav />
-            <SearchBar />
-            <Cards
+            <Nav/>
+            <SearchBar/>
+            <PokemonHome/>
+            <div className='cards-container-home'>
+            <Cards className='cards-home'
                 pokemons={currentPokemon}
             />
+            </div>
             <Pagination
                 pokemonPerPage={pokemonPerPage}
                 totalPokemon={allPokemons.length}

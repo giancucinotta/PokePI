@@ -3,26 +3,31 @@ import { Link } from 'react-router-dom';
 
 import './Card.css';
 
-const Card = ( props ) => {
+const Card = (props) => {
+  console.log(props)
   return (
-    <div className='cards'>
+    <div>
       {
-          <div className='card'>
-            <div>
-              <img src={props.img} alt='' className='cards-img'/>
-              <div>
-                <h5>{props.name}</h5>
-              </div>
-              <div>
-                <p>{props.type}</p>
-              </div>
-              <Link to={`/home/detail/${props.id}`}>
-                <button type='submit'>
-                  More Details
-                </button>
-              </Link>
+        <div className='card'>
+          <div>
+            <img src={props.pokemon.img} alt='' className='img' />
+            <div className='name'>
+              <h5>{props.pokemon.name}</h5>
             </div>
+            <div className='type-container'>{props.pokemon.typ.length > 1
+                    ? <p>Types: <br></br>
+                      {props.pokemon.typ[0]} & {props.pokemon.typ[1]}</p>
+                    : <p>Type: <br></br> 
+                      {props.pokemon.typ[0]}
+                    </p>}
+            </div>
+            <Link to={`/home/detail/${props.pokemon.id}`}>
+              <button type='submit'>
+                More Details
+              </button>
+            </Link>
           </div>
+        </div>
       }
     </div>
   );

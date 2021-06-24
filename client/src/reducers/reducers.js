@@ -1,6 +1,6 @@
 import { GET_TYPES } from "../actions/types.js";
 import { ADD_POKEMON, GET_POKEMON, GET_POKEMON_BY_NAME, GET_POKEMON_BY_ID, POKEMON_BY_NAME_RESET, POKEMON_DETAIL_RESET } from "../actions/pokemon.js";
-import { POKEMONS_ASC, POKEMONS_DESC, ATTACK_ASC, ATTACK_DESC, NO_ORDER, ONLY_API, ONLY_DB, ALL, BY_TYPE, RESET} from "../components/Filters/filterActions";
+import { POKEMONS_ASC, POKEMONS_DESC, ATTACK_ASC, ATTACK_DESC, NO_ORDER, ONLY_API, ONLY_DB, ALL, BY_TYPE } from "../components/Filters/filterActions";
 
 const initialState = {
     pokemons: [],
@@ -104,14 +104,7 @@ const pokemons = (state = initialState, action) => {
                 filteredPokemon: action.payload.arrayByType,
                 filtered_by: action.payload.name
             }
-        case 'RESET':
-            return {
-                ...state,
-                filteredPokemon: [],
-                filtered_by: 'All',
-                ordered_by: 'All'
-            }
-
+            
         default:
             return state
     }

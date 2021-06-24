@@ -12,9 +12,8 @@ post / pokemons: recibe los datos recolectados del form por body + crea un pokem
 
 async function addPokemon(req, res) {
     const id = uuidv4();
-    let data = { ...req.body, id };  // No es necesario destructurar porque ya viene un objeto
+    let data = { ...req.body, id }; 
     if (!req.body.name) return res.status(400).send('Body vacio!!!');
-    // return res.send(req.body)
     try {
         const createdPoke = await Pokemons.create(data)
         await createdPoke.addTypes(req.body.type, { through: 'pokemon_type' })

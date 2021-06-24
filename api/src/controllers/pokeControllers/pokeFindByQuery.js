@@ -23,8 +23,8 @@ const getPokemonsByQuery = async function (name) {
                 weight: pokeDBName.weight
             };
             pokeDBName.types.length === 1 ?
-                pokeFoundName.type = [pokeDBNameD.types[0].dataValues.name] :
-                pokeFoundName.type = [pokeDBName.types[0].dataValues.name, pokeDBName.types[1].dataValues.name]
+                pokeFoundName.typ = [pokeDBNameD.types[0].dataValues.name] :
+                pokeFoundName.typ = [pokeDBName.types[0].dataValues.name, pokeDBName.types[1].dataValues.name]
             // pokeFoundName.type = pokeDBNameD.types[0].dataValues.name :
             // pokeFoundName.type = pokeDBName.types[0].dataValues.name + ", " + pokeDBName.types[1].dataValues.name
             if (pokeFoundName.name === name) return pokeFoundName;
@@ -47,8 +47,8 @@ const getPokemonsByQuery = async function (name) {
                         pokeAllAPI.data.sprites.other['official-artwork'].front_default,
                 }
                 pokeAllAPI.data.types.length === 1 ?
-                    pokeFound.types = [pokeAllAPI.data.types[0].type.name]
-                    : pokeFound.types = [pokeAllAPI.data.types[0].type.name, pokeAllAPI.data.types[1].type.name]
+                    pokeFound.typ = [pokeAllAPI.data.types[0].type.name]
+                    : pokeFound.typ = [pokeAllAPI.data.types[0].type.name, pokeAllAPI.data.types[1].type.name]
 
                 // pokeFound.type = pokeAllAPI.data.types[0].type.name
                 // : pokeFound.type = pokeAllAPI.data.types[0].type.name + ", " + pokeAllAPI.data.types[1].type.name

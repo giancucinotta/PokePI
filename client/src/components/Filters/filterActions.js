@@ -87,7 +87,7 @@ export const pokemonOrder = (by) => (dispatch, getState) => {
 		case 'Attack Asc':
 			if (filterBy === 'All') {
 				const orderedPokemon = pokemon.sort(
-					(a, b) => a.attack - b.attack
+					(a, b) => b.attack - a.attack
 				)
 				dispatch({
 					type: ATTACK_ASC,
@@ -98,7 +98,7 @@ export const pokemonOrder = (by) => (dispatch, getState) => {
 				})
 			} else {
 				const orderedPokemon = filtered.sort(
-					(a, b) => a.attack - b.attack
+					(a, b) => b.attack - a.attack
 				)
 				dispatch({
 					type: ATTACK_ASC,
@@ -113,7 +113,7 @@ export const pokemonOrder = (by) => (dispatch, getState) => {
 		case 'Attack Des':
 			if (filterBy === 'All') {
 				const orderedPokemon = pokemon.sort(
-					(a, b) => b.attack - a.attack
+					(a, b) => a.attack - b.attack
 				)
 				dispatch({
 					type: ATTACK_DESC,
@@ -124,7 +124,7 @@ export const pokemonOrder = (by) => (dispatch, getState) => {
 				})
 			} else {
 				const orderedPokemon = filtered.sort(
-					(a, b) => b.attack - a.attack
+					(a, b) => a.attack - b.attack
 				)
 				dispatch({
 					type: ATTACK_DESC,
@@ -194,11 +194,11 @@ export const pokemonByType = (pokeType) => (dispatch, getState) => {
 	const pokemon = getState().pokemons.slice()
 
 	let arrayByType = pokemon.filter((poke) =>
-		poke.types.length
-			? poke.types[0] === pokeType
+		poke.typ.length
+			? poke.typ[0] === pokeType
 				? true
-				: poke.types.length > 1
-					? poke.types[1] === pokeType
+				: poke.typ.length > 1
+					? poke.typ[1] === pokeType
 						? true
 						: false
 					: false
@@ -211,10 +211,4 @@ export const pokemonByType = (pokeType) => (dispatch, getState) => {
 			name: pokeType
 		}
 	});
-};
-
-export const resetFilters = () => (dispatch) => {
-	dispatch({
-		type: RESET
-	})
 };

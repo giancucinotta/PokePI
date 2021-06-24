@@ -4,3 +4,18 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.button-pagination{
+    background-image: linear-gradient(to right, #af8db2 0%, #a27aa5  51%, #956799  100%);
+    font-size: 17px;
+    cursor: pointer;
+    transition: transform 250ms;
+    margin-bottom: 25px;
+}
+
+.button-pagination{
+    background-image: linear-gradient(to right, #956799 0%, #87548c  51%, #7f3e85  100%);
+    transition: transform .5s ease;
+    transform: scale(1.1);
+ 
+}

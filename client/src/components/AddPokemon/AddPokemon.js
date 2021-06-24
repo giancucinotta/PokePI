@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addPokemon } from '../../actions/pokemon'
+import { addPokemon } from '../../actions/pokemon';
 import Nav from '../Nav/Nav';
 import { validate } from './validateInput';
 
@@ -159,7 +159,7 @@ export function AddPokemon({ types, addPokemon }) {
                                 <input className='input-item' type="url" name="img" placeholder="http://example.com" value={input.img} onChange={handleChange} />
                             </div>
                         </div>
-                        <button type='submit'>CREATE POKEMON</button>
+                        <button className='button-form' type='submit'>CREATE POKEMON</button>
                     </form>
                 </div>
             </div>
@@ -169,7 +169,7 @@ export function AddPokemon({ types, addPokemon }) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addPokemon: (pokemon) => dispatch(addPokemon(pokemon))
+        addPokemon: (pokemon) => dispatch(addPokemon(pokemon)),
     };
 }
 
