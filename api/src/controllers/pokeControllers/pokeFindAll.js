@@ -1,15 +1,15 @@
 const getAllDBPokemons = require('./pokeFindAllDB');
 const getAllApiPokemons = require('./pokeFindAllApi')
 
-const getAllPokemons = async function () {
+const getAllPokemons = async function (req, res, next) {
     try {
         let pokemonFromDB = await getAllDBPokemons();
         let pokemonFromApi = await getAllApiPokemons();
         let bothPokemons = pokemonFromDB.concat(pokemonFromApi);
-        return bothPokemons;
+        return res.status(200).send(bothPokemons);
     } catch (error) {
         console.log(error);
-        res.status(500).send('Pokemon not found in "Created Data Base" and API');
+        next(error)
     }
 }
 

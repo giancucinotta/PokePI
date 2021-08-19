@@ -3,7 +3,8 @@ const { BASE_URL, POKE } = require('../../../const');
 const { Pokemons, Types } = require('../../db');
 
 
-const getPokemonsById = async function (idPokemon) {
+const getPokemonsById = async function (req, res, next) {
+    const { idPokemon } = req.params
     try {
         if (idPokemon.length > 5) {
             let pokeDBID = await Pokemons.findOne({
@@ -26,7 +27,7 @@ const getPokemonsById = async function (idPokemon) {
             pokeDBID.types.length === 1 ?
                 pokeFoundID.typ = [pokeDBID.types[0].dataValues.name] :
                 pokeFoundID.typ = [pokeDBID.types[0].dataValues.name, pokeDBID.types[1].dataValues.name]
-            if (pokeFoundID.id === idPokemon) return pokeFoundID
+            if (pokeFoundID.id === idPokemon) return res.status(200).send(pokeFoundID)
         }
         else {
             let idPoke = parseInt(idPokemon);
@@ -49,12 +50,13 @@ const getPokemonsById = async function (idPokemon) {
                 pokeAllAPI.data.types.length === 1 ?
                     pokeFound.typ = [pokeAllAPI.data.types[0].type.name]
                     : pokeFound.typ = [pokeAllAPI.data.types[0].type.name, pokeAllAPI.data.types[1].type.name]
-                return pokeFound
+                return res.status(200).send(pokeFound);
             }
         };
     }
     catch (error) {
-        return console.log("Pokemon not found by ID.", error);
+        console.log(error);
+        next(error)
     }
 };
 

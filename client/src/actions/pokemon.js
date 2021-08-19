@@ -48,7 +48,7 @@ export const getPokemonDetail = (id) => {
 
 export const getPokemonByName = (name) => {
     return (dispatch) =>
-        fetch(`http://localhost:3001/pokemons?name=${name}`)
+        fetch(`http://localhost:3001/pokemons/by?name=${name}`)
             .then((answer) => answer.json())
             .then((answer) =>
                 dispatch({
