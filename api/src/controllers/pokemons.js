@@ -31,37 +31,37 @@ async function addPokemon(req, res) {
 };
 
 async function getAllPokemons(req, res) {
-    let pokeArray = [];
-    // console.log(pokeDB)
-    if (pokeArray.length < 12) {
-        try {
-            let pokeResults = await axios(`${BASE_URL}${POKE}`)
-            // console.log(pokeResults.data.results)
-            for (let i = 0; i < 12; i++) {
-                let pokeI = await axios(pokeResults.data.results[i].url)
-                // console.log(pokeI)
-                let eachPoke = {}
-                // console.log(pokeI.data.types[1])
-                pokeI.data.types.length === 1 ? (eachPoke = {
-                    name: pokeI.data.name,
-                    img: pokeI.data.sprites.front_default,
-                    types: pokeI.data.types[0].type.name
-                }) :
-                    (eachPoke = {
-                        name: pokeI.data.name,
-                        img: pokeI.data.sprites.front_default,
-                        types: pokeI.data.types[0].type.name + ", " + pokeI.data.types[1].type.name
-                    })
-                pokeArray.push(eachPoke);
-            }
+//     let pokeArray = [];
+//     // console.log(pokeDB)
+//     if (pokeArray.length < 12) {
+//         try {
+//             let pokeResults = await axios(`${BASE_URL}${POKE}`)
+//             // console.log(pokeResults.data.results)
+//             for (let i = 0; i < 12; i++) {
+//                 let pokeI = await axios(pokeResults.data.results[i].url)
+//                 // console.log(pokeI)
+//                 let eachPoke = {}
+//                 // console.log(pokeI.data.types[1])
+//                 pokeI.data.types.length === 1 ? (eachPoke = {
+//                     name: pokeI.data.name,
+//                     img: pokeI.data.sprites.front_default,
+//                     typ: pokeI.data.types[0].type.name
+//                 }) :
+//                     (eachPoke = {
+//                         name: pokeI.data.name,
+//                         img: pokeI.data.sprites.front_default,
+//                         typ: [pokeI.data.types[0].type.name, pokeI.data.types[1].type.name]
+//                     })
+//                 pokeArray.push(eachPoke);
+//             }
 
-            //console.log(pokeArray)
-        }
-        catch (error) {
-            console.log(error);
-            res.status(500).send('Internal Server Error')
-        }
-    }
+//             //console.log(pokeArray)
+//         }
+//         catch (error) {
+//             console.log(error);
+//             res.status(500).send('Internal Server Error')
+//         }
+//     }
     if (req.query.name) {
         let queryName = req.query.name.toLowerCase();
         const isItThere = await Pokemons.findOne({ where: { name: queryName } })
@@ -84,9 +84,9 @@ async function getAllPokemons(req, res) {
                     weight: findByName.data.weight,
                 }
                 if (findByName.data.types.length === 1) {
-                    found.types = findByName.data.types[0].type.name;
+                    found.typ = [findByName.data.types[0].type.name]
                 } else {
-                    found.type = findByName.data.types[0].type.name + ", " + findByName.data.types[1].type.name
+                    found.typ = [findByName.data.types[0].type.name, findByName.data.types[1].type.name]
 
                 }
                 return res.json(found).status(200)
@@ -119,9 +119,9 @@ async function findById(req, res) {
                     weight: findByPokeId.data.weight,
                 }
                 if (findByPokeId.data.types.length === 1) {
-                    found.types = findByPokeId.data.types[0].type.name;
+                    found.typ = [findByPokeId.data.types[0].type.name];
                 } else {
-                    found.type = findByPokeId.data.types[0].type.name + ", " + findByPokeId.data.types[1].type.name
+                    found.typ = [findByPokeId.data.types[0].type.name, findByPokeId.data.types[1].type.name]
                 }
                 return res.json(found).status(200)
             }

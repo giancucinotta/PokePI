@@ -14,19 +14,11 @@ const getPokemonsByQuery = async function (name) {
             let pokeFoundName = {
                 id: pokeDBName.id,
                 img: pokeDBName.img,
-                name: pokeDBName.name,
-                hp: pokeDBName.hp,
-                attack: pokeDBName.attack,
-                defense: pokeDBName.defense,
-                speed: pokeDBName.speed,
-                height: pokeDBName.height,
-                weight: pokeDBName.weight
+                name: pokeDBName.name
             };
             pokeDBName.types.length === 1 ?
                 pokeFoundName.typ = [pokeDBNameD.types[0].dataValues.name] :
                 pokeFoundName.typ = [pokeDBName.types[0].dataValues.name, pokeDBName.types[1].dataValues.name]
-            // pokeFoundName.type = pokeDBNameD.types[0].dataValues.name :
-            // pokeFoundName.type = pokeDBName.types[0].dataValues.name + ", " + pokeDBName.types[1].dataValues.name
             if (pokeFoundName.name === name) return pokeFoundName;
         }
         if (pokeDBName === null) {
@@ -36,12 +28,6 @@ const getPokemonsByQuery = async function (name) {
                 let pokeFound = {
                     id: pokeAllAPI.data.id,
                     name: pokeAllAPI.data.name,
-                    hp: pokeAllAPI.data.hp,
-                    attack: pokeAllAPI.data.attack,
-                    defense: pokeAllAPI.data.defense,
-                    speed: pokeAllAPI.data.speed,
-                    height: pokeAllAPI.data.height,
-                    weight: pokeAllAPI.data.weight,
                     img: pokeAllAPI.data.sprites.other.dream_world.front_default ?
                         pokeAllAPI.data.sprites.other.dream_world.front_default :
                         pokeAllAPI.data.sprites.other['official-artwork'].front_default,
@@ -50,8 +36,6 @@ const getPokemonsByQuery = async function (name) {
                     pokeFound.typ = [pokeAllAPI.data.types[0].type.name]
                     : pokeFound.typ = [pokeAllAPI.data.types[0].type.name, pokeAllAPI.data.types[1].type.name]
 
-                // pokeFound.type = pokeAllAPI.data.types[0].type.name
-                // : pokeFound.type = pokeAllAPI.data.types[0].type.name + ", " + pokeAllAPI.data.types[1].type.name
                 return pokeFound
             }
         }

@@ -1,4 +1,3 @@
-const getAllDBPokemons = require('./pokeFindAllDB');
 const { default: axios } = require('axios');
 const { BASE_URL, POKE } = require('../../../const');
 const { Pokemons, Types } = require('../../db');
@@ -26,9 +25,7 @@ const getPokemonsById = async function (idPokemon) {
             };
             pokeDBID.types.length === 1 ?
                 pokeFoundID.typ = [pokeDBID.types[0].dataValues.name] :
-                //pokeFoundID.type = pokeDBID.types[0].dataValues.name
                 pokeFoundID.typ = [pokeDBID.types[0].dataValues.name, pokeDBID.types[1].dataValues.name]
-            // pokeFoundID.type = pokeDBID.types[0].dataValues.name + ", " + pokeDBID.types[1].dataValues.name
             if (pokeFoundID.id === idPokemon) return pokeFoundID
         }
         else {
@@ -52,8 +49,6 @@ const getPokemonsById = async function (idPokemon) {
                 pokeAllAPI.data.types.length === 1 ?
                     pokeFound.typ = [pokeAllAPI.data.types[0].type.name]
                     : pokeFound.typ = [pokeAllAPI.data.types[0].type.name, pokeAllAPI.data.types[1].type.name]
-                // pokeFound.type = pokeAllAPI.data.types[0].type.name
-                // : pokeFound.type = pokeAllAPI.data.types[0].type.name + ", " + pokeAllAPI.data.types[1].type.name
                 return pokeFound
             }
         };

@@ -4,9 +4,8 @@ import Filters from '../Filters/FilterHandlers';
 
 import './SearchBar.css'
 
-export const SearchBar = () => {
+export const SearchBar = (props) => {
     const [name, setName] = useState('');
-
 
     const handleChange = (e) => {
         setName(e.target.value);
@@ -41,7 +40,7 @@ export const SearchBar = () => {
                 </form>
             </div>
             <div>
-                <Filters />
+                <Filters setPage={props.setPage}/>
             </div>
         </div >
     );

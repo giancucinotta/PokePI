@@ -1,13 +1,9 @@
 const { Types } = require('../db')
 const axios = require('axios');
 const { BASE_URL, TYPE } = require('../../const');
-/*
-Get /types: obtener todos los tipos de pokemon posibles + en principio traerlos desde pokeapi y guardarlos en DB, luego usarlos de DB
-*/
 
 async function getAllTipos(req, res) {
     let tiposDB = await Types.findAll({ limit: 20 });
-    // console.log(tiposDB)
     if (tiposDB.length < 20) {
         try {
             let { data } = await axios(`${BASE_URL}${TYPE}`);

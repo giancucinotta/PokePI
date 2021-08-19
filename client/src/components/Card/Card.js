@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import './Card.css';
 
 const Card = (props) => {
-  console.log(props)
   return (
     <div>
       {

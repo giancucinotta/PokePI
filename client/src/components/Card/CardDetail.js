@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './CardDetail.css';
 
 const CardDetail = (props) => {
+    console.log(props.typ)
     return (
         <div className='cards-detail-container'>
             <div className='card-detail'>

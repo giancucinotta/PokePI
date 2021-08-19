@@ -34,7 +34,7 @@ const Home = () => {
     return (
         <div className='home-container'>
             <Nav/>
-            <SearchBar/>
+            <SearchBar setPage={setCurrentPage}/>
             <PokemonHome/>
             <div className='cards-container-home'>
             <Cards className='cards-home'

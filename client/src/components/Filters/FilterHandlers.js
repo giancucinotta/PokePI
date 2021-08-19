@@ -2,13 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { pokemonOrder, pokemonByOrigin, pokemonByType } from './filterActions';
 
-const Filters = ({ types, pokemons, pokemonByType, pokemonByOrigin, pokemonOrder }) => {
+const Filters = ({ types, pokemons, pokemonByType, pokemonByOrigin, pokemonOrder, setPage }) => {
+	
+	
 	const handleByType = (e) => {
 		pokemonByType(e.target.value, pokemons);
 	};
 
 	const handleByOrigin = (e) => {
 		pokemonByOrigin(e.target.value, pokemons);
+		setPage(1);
+
 	};
 
 	const handleOrder = (e) => {
@@ -23,6 +27,7 @@ const Filters = ({ types, pokemons, pokemonByType, pokemonByOrigin, pokemonOrder
 		}
 	}
 
+
 	return (
 		<div>
 			<select name='Filter' onChange={handleOrder}>
@@ -32,6 +37,8 @@ const Filters = ({ types, pokemons, pokemonByType, pokemonByOrigin, pokemonOrder
 				<option value='Z-A'>Z-A</option>
 				<option value='Attack Asc'>More Attack</option>
 				<option value='Attack Des'>Less Attack</option>
+				<option value='Hp Asc'>Hp Asc</option>
+				<option value='Hp Des'>Hp Des</option>
 			</select>
 			<select name='filters' onChange={handleChange}>
 				<optgroup label="By origin">

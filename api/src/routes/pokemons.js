@@ -5,7 +5,7 @@ const { getPokemonsByQuery, getPokemonsById, getAllPokemons } = require('../cont
 
 const router = Router()
 
-router.post('/', async function (req, res) {
+router.post('/', async function (req, res, next) {
     const id = uuidv4();
     let data = { ...req.body, id };
     if (!req.body.name) return res.status(400).send('Missing properties! Try adding more!');
@@ -21,11 +21,13 @@ router.post('/', async function (req, res) {
     }
     catch (error) {
         console.log(error);
-        res.status(500).send('Internal Server Error, could not add the new Pokemon to the "Data Base"');
+        next(error)
     }
 })
-router.get('/', async function (req, res) {
-    if (req.query.name) {
+
+router.get('/', async function (req, res, next) {
+    try  {
+        if (req.query.name) {
         let findByName = await getPokemonsByQuery(req.query.name);
         if (findByName.name) return res.status(200).send(findByName);
         else return res.status(404).send('Pokemon not found, try again with another name');
@@ -33,6 +35,10 @@ router.get('/', async function (req, res) {
     else {
         let pokeArray = await getAllPokemons();
         return res.status(200).send(pokeArray);
+    }}
+    catch (error) {
+        console.log(error);
+        next(error)
     }
 });
 

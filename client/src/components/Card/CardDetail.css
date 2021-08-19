@@ -46,7 +46,7 @@
     flex-direction: column;
     width: 100px;
     height: 100px;
-    margin-left: 75px;
+    margin-left: 60px;
 }
 
 .id-detail{
@@ -62,7 +62,7 @@
     font-size: 17px;
     position: absolute;
     left: 923px;
-    bottom: 80px;
+    bottom: 45px;
     cursor: pointer;
     border-radius: 7px;
     transition: transform 250ms;
@@ -75,5 +75,6 @@
 }
 
 .p-detail{
+    margin-top: -15px;
      font-size: small;
  }

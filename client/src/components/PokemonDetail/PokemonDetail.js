@@ -24,7 +24,7 @@ const PokemonDetail = ({ match, pokemon_detail, getPokemonDetailReset, getPokemo
       speed={pokemon_detail.speed}
       weight={pokemon_detail.weight}
       height={pokemon_detail.height}
-      type={pokemon_detail.type}
+      typ={pokemon_detail.typ}
       />
     </div>
   )

@@ -8,6 +8,8 @@ export const ALL = 'ALL';
 export const BY_TYPE = 'BY_TYPE';
 export const RESET = 'RESET';
 export const NO_ORDER = 'NO_ORDER';
+export const HP_ASC = 'HP_ASC';
+export const HP_DESC = 'HP_DESC';
 
 export const pokemonOrder = (by) => (dispatch, getState) => {
 	const filtered = getState().filteredPokemon.slice()
@@ -135,6 +137,57 @@ export const pokemonOrder = (by) => (dispatch, getState) => {
 				})
 			}
 			break;
+
+		case 'Hp Asc':
+			if (filterBy === 'All') {
+				const orderedPokemon = pokemon.sort(
+					(a, b) => b.hp - a.hp
+				)
+				dispatch({
+					type: HP_ASC,
+					payload: {
+						orderedPokemon,
+						name: by
+					}
+				})
+			}
+				else {
+				const orderedPokemon = filtered.sort(
+					(a, b) => b.hp - a.hp
+				)
+				dispatch({
+					type: HP_ASC,
+					payload: {
+						orderedPokemon,
+						name: by
+					}
+				})
+			}
+			case 'Hp Des':
+			if (filterBy === 'All') {
+				const orderedPokemon = pokemon.sort(
+					(a, b) => a.hp - b.hp
+				)
+				dispatch({
+					type: HP_DESC,
+					payload: {
+						orderedPokemon,
+						name: by
+					}
+				})
+			}
+				else {
+				const orderedPokemon = filtered.sort(
+					(a, b) => a.hp - b.hp
+				)
+				dispatch({
+					type: HP_DESC,
+					payload: {
+						orderedPokemon,
+						name: by
+					}
+				})
+			}
 		case 'All':
 			dispatch({
 				type: NO_ORDER,
