@@ -243,6 +243,7 @@ export const pokemonByOrigin = (by) => (dispatch, getState) => {
 			return pokemon;
 	}
 };
+
 export const pokemonByType = (pokeType) => (dispatch, getState) => {
 	const pokemon = getState().pokemons.slice()
 
