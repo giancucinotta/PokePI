@@ -12,7 +12,9 @@ const getAllDBPokemons = async function (next) {
             let pokeObj = {
                 id: pokeDB[i].dataValues.id,
                 img: pokeDB[i].dataValues.img,
-                name: pokeDB[i].dataValues.name
+                name: pokeDB[i].dataValues.name,
+                hp: pokeDB[i].dataValues.hp,
+                attack: pokeDB[i].dataValues.attack
             }
             pokeDB[i].dataValues.types.length === 1 ?
                 pokeObj.typ = [pokeDB[i].dataValues.types[0].name]

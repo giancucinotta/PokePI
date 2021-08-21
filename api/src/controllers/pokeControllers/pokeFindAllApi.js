@@ -12,7 +12,9 @@ const getAllApiPokemons = async function (next) {
                 eachPoke = {
                 id: pokeI.data.id,
                 name: pokeI.data.name,
-                img: pokeI.data.sprites.front_default
+                img: pokeI.data.sprites.front_default,
+                hp: pokeI.data.stats[0].base_stat,
+                attack: pokeI.data.stats[1].base_stat
             } 
             pokeI.data.types.length === 1 ? eachPoke.typ = [pokeI.data.types[0].type.name] : eachPoke.typ = [pokeI.data.types[0].type.name, pokeI.data.types[1].type.name];
             pokeArray.push(eachPoke);
